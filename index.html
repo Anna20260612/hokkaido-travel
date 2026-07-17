@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>探索北海道 | Hokkaido Travel</title>
+
+    <!-- PWA: Web App Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- PWA: 主題與圖示 -->
+    <meta name="theme-color" content="#3498db">
+    <meta name="description" content="探索四季皆美的北海道 — 熱門景點與必吃美食完整攻略">
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
+
+    <!-- PWA: iOS / Safari 支援 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="北海道之旅">
+    <link rel="apple-touch-icon" href="icons/icon-180.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f8fbfd;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            margin-left: 30px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        .hero {
+            height: 100vh;
+            /* 
+               背景圖片在這裡設定。
+               若要換成您電腦裡的圖片，請將網址改為相對路徑，例如：
+               url('images/hokkaido-bg.jpg')
+            */
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://picsum.photos/1920/1080?random=1') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .cta-btn {
+            padding: 12px 30px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            transition: background-color 0.3s;
+        }
+
+        .cta-btn:hover {
+            background-color: #2980b9;
+        }
+
+        section {
+            padding: 80px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #2c3e50;
+        }
+
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            /* 加入背景色，確保圖片載入前或破圖時不會只顯示空白 */
+            background-color: #e9ecef;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .card-content p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px;
+            }
+            .nav-links {
+                margin-top: 15px;
+            }
+            .nav-links a {
+                margin: 0 10px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            section {
+                padding: 50px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">❄️ 北海道之旅</a>
+        <nav class="nav-links">
+            <a href="#about">關於北海道</a>
+            <a href="#destinations">熱門景點</a>
+            <a href="#food">必吃美食</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>探索四季皆美的北海道</h1>
+        <p>從粉雪天堂到絢爛花海，感受北國的無盡魅力</p>
+        <a href="#destinations" class="cta-btn">開始規劃旅程</a>
+    </section>
+
+    <section id="destinations">
+        <h2 class="section-title">熱門景點推薦</h2>
+        <div class="destinations-grid">
+            <div class="card">
+                <!-- 若要更換本機圖片，請將 src 改為例如： src="images/sapporo.jpg" -->
+                <img src="https://picsum.photos/800/600?random=2" alt="札幌">
+                <div class="card-content">
+                    <h3>札幌 (Sapporo)</h3>
+                    <p>北海道的中心都市，擁有著名的大通公園、白色戀人公園，以及每年冬季盛大的札幌雪祭。</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/800/600?random=3" alt="小樽">
+                <div class="card-content">
+                    <h3>小樽 (Otaru)</h3>
+                    <p>漫步在浪漫的小樽運河旁，欣賞充滿歷史感的紅磚倉庫群，品嚐精緻甜點與欣賞玻璃工藝。</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/800/600?random=4" alt="富良野">
+                <div class="card-content">
+                    <h3>富良野 (Furano)</h3>
+                    <p>夏季限定的絕美景色！富田農場的薰衣草田與色彩繽紛的花海，是愛好攝影者的天堂。</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/800/600?random=5" alt="函館">
+                <div class="card-content">
+                    <h3>函館 (Hakodate)</h3>
+                    <p>搭乘纜車登上函館山，俯瞰被譽為「世界三大夜景」之一的百萬夜景，美不勝收。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="food" style="background-color: #f0f7f4; border-radius: 20px;">
+        <h2 class="section-title">北海道必吃美食</h2>
+        <div class="destinations-grid">
+            <div class="card">
+                <div class="card-content">
+                    <h3>🦀 新鮮海產</h3>
+                    <p>函館朝市、札幌二條市場的海鮮丼，螃蟹、海膽、鮭魚卵絕對不能錯過。</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3>🍜 札幌拉麵</h3>
+                    <p>濃郁的味噌拉麵搭配奶油與玉米，是寒冷冬日裡最溫暖的慰藉。</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3>🥛 乳製品與甜點</h3>
+                    <p>受惠於優良的自然環境，北海道的鮮奶、冰淇淋、起司蛋糕世界聞名。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 北海道旅遊資訊網. All Rights Reserved.</p>
+        <p style="font-size: 0.8rem; margin-top: 10px;">此網站為 HTML 設計範例</p>
+    </footer>
+
+    <!-- PWA: 安裝按鈕（預設隱藏，偵測到可安裝時才顯示） -->
+    <button id="installBtn" style="
+        display:none;
+        position:fixed;
+        right:20px;
+        bottom:20px;
+        z-index:1100;
+        padding:12px 22px;
+        background-color:#3498db;
+        color:#fff;
+        border:none;
+        border-radius:30px;
+        font-size:1rem;
+        box-shadow:0 5px 15px rgba(0,0,0,0.2);
+        cursor:pointer;
+    ">📲 安裝 App</button>
+
+    <script>
+        // 註冊 Service Worker，啟用離線快取與可安裝性
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker
+                    .register('sw.js')
+                    .then((reg) => console.log('Service Worker 註冊成功：', reg.scope))
+                    .catch((err) => console.error('Service Worker 註冊失敗：', err));
+            });
+        }
+
+        // 監聽瀏覽器的安裝提示事件（Chrome / Edge / Android 等）
+        let deferredPrompt;
+        const installBtn = document.getElementById('installBtn');
+
+        window.addEventListener('beforeinstallprompt', (event) => {
+            event.preventDefault();
+            deferredPrompt = event;
+            installBtn.style.display = 'block';
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (!deferredPrompt) return;
+            installBtn.style.display = 'none';
+            deferredPrompt.prompt();
+            await deferredPrompt.userChoice;
+            deferredPrompt = null;
+        });
+
+        window.addEventListener('appinstalled', () => {
+            installBtn.style.display = 'none';
+            console.log('PWA 已成功安裝');
+        });
+    </script>
+
+</body>
+</html>
